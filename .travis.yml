@@ -20,3 +20,15 @@ after_success:
     - docker push aqrulesms/multi-nginx
     - docker push aqrulesms/multi-server
     - docker push aqrulesms/multi-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multi-docker
+    env: Multidocker-env
+    bucket_name: elasticbeanstalk-us-east-2-168116352293
+    bucket_path: docker-multi
+    on:
+        branch: main
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
